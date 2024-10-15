@@ -10,10 +10,9 @@ const RestaurantCard = (props) => {
     avgRatingString,
     sla,
     cloudinaryImageId,
-    veg,
   } = resData?.info;
 
-  console.log(veg);
+  // console.log(costForTwo);
   return (
     <div
       className="bg-gradient-to-br from-white to-green-100 shadow-lg rounded-lg w-64 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-2xl  hover:bg-gradient-to-br hover:from-green-200 hover:to-yellow-200 relative flex flex-col overflow-hidden group"
@@ -32,7 +31,7 @@ const RestaurantCard = (props) => {
       {/* Content Section */}
       <div className="flex flex-col justify-between p-4 h-full">
         {/* Restaurant Name */}
-        <h3 className="text-lg font-semibold mt-2 truncate group-hover:whitespace-normal group-hover:overflow-hidden group-hover:max-h-12 transition-all duration-1000 ease-in hover:text-blue-600">
+        <h3 className="text-lg font-semibold mt-2 truncate transition-all duration-1000  group-hover:whitespace-normal group-hover:overflow-hidden group-hover:max-h-12 ease-in hover:text-blue-600">
           {name}
         </h3>
 

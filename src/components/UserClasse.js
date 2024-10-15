@@ -1,5 +1,5 @@
 import React from "react";
-
+import userContext from "../utils/userContext";
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
@@ -23,15 +23,15 @@ class UserClass extends React.Component {
     this.setState({
       userInfo: json,
     });
-    console.log(json.bio);
+    // console.log(json.bio);
   }
 
   componentWillUnmount() {
-    console.log("Unmount");
+    // console.log("Unmount");
   }
 
   render() {
-    console.log("Child Render");
+    // console.log("Child Render");
     const { name, location, avatar_url, bio } = this.state.userInfo;
 
     return (
@@ -50,6 +50,13 @@ class UserClass extends React.Component {
           </h3>
           <h4 className="text-md text-gray-600 mb-2">Location: {location}</h4>
           <h4 className="text-md text-gray-600 mb-4">Contact: @pk1475</h4>
+          <h4>
+            User: {" "}
+            <userContext.Consumer>
+              {({ loggedInUser }) => 
+                loggedInUser}
+            </userContext.Consumer>
+          </h4>
         </div>
       </div>
     );

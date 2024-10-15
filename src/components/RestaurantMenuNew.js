@@ -32,7 +32,7 @@ const RestaurantMenuNew = () => {
   const categories =
     restaurantInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
-        c?.card?.card?.["@type"] ==
+        c?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
@@ -54,7 +54,7 @@ const RestaurantMenuNew = () => {
           // This logic checks if the current index is already open (index === showIndex).
           //  If it is, it sets the showIndex to null to close the accordion. Otherwise,
           //  it sets the showIndex to the clicked index to open that specific accordion section.
-          setShowIndex={() => setShowIndex(index == showIndex ? null : index)}
+          setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
         />
       ))}
     </div>

@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/common";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { loggedInUser } = useContext(userContext);
+  console.log(loggedInUser);
+
+  // we are subscribing to the store
+  const cartItem = useSelector((store) => store.cart.items);
+  console.log(cartItem);
 
   // Toggle mobile menu visibility
   const toggleMobileMenu = () => {
@@ -39,6 +47,10 @@ const Header = () => {
           </li>
           <li className="hover:text-gray-400 hover:underline transition duration-300">
             <Link to="/grocery">Grocery</Link>
+          </li>
+          <li className="font-bold">{loggedInUser}</li>
+          <li className="font-bold">
+            <Link to="/cart">Cart- {cartItem.length}</Link>
           </li>
         </ul>
 

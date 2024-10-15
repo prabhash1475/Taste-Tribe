@@ -1,8 +1,9 @@
 import RestaurantCard, { withVegTag } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -10,12 +11,14 @@ const Body = () => {
   const [title, setTitle] = useState("");
   const [searchText, setSearchText] = useState("");
 
+  const { loggedInUser, setUserName } = useContext(userContext);
+
   const PureVegRestaurant = withVegTag(RestaurantCard);
 
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(listOfRestaurants[1]?.info?.isOpen);
+  // console.log(listOfRestaurants[1]?.info?.isOpen);
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -56,7 +59,9 @@ const Body = () => {
   };
   // Veg filter
   const handleVeg = () => {
-    const vegItem = listOfRestaurants.filter((elem) => elem?.info?.veg == true);
+    const vegItem = listOfRestaurants.filter(
+      (elem) => elem?.info?.veg === true
+    );
     setListOfFilterRestaurants(vegItem);
   };
 
@@ -93,6 +98,14 @@ const Body = () => {
           >
             Search
           </button>
+
+          <label>
+            User Name
+            <input
+              value={loggedInUser}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </label>
         </div>
         {/* Filter by rating */}
         <button

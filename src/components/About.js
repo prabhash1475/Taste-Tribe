@@ -8,7 +8,7 @@ class About extends React.Component {
     console.log("Parent Constructor");
   }
   componentDidMount() {
-    console.log("Parent CDM");
+    // console.log("Parent CDM");
   }
   render() {
     console.log("Parent Render");
